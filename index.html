@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de Points de Ping Pong</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 16px;
+      margin-top: 10px;
+      display: block;
+    }
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 5px auto 15px;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculateur de Points de Ping Pong</h1>
+    <label for="points-adversaire">Points de l'adversaire :</label>
+    <input type="number" id="points-adversaire" min="0" placeholder="Ex. 50">
+    
+    <label for="coefficient">Coefficient :</label>
+    <input type="number" id="coefficient" min="0" step="0.1" placeholder="Ex. 1.5">
+    
+    <button onclick="calculerPoints()">Calculer les Points</button>
+    
+    <div class="result" id="resultat"></div>
+  </div>
+  
+  <script>
+    // Fonction qui calcule les points en fonction des points de l'adversaire et du coefficient
+    function calculerPoints() {
+      const pointsAdversaire = parseFloat(document.getElementById('points-adversaire').value);
+      const coefficient = parseFloat(document.getElementById('coefficient').value);
+      
+      const resultatElement = document.getElementById('resultat');
+      
+      // Vérifier que les valeurs sont valides
+      if (isNaN(pointsAdversaire) || isNaN(coefficient) || pointsAdversaire < 0 || coefficient < 0) {
+        resultatElement.innerHTML = 'Veuillez entrer des valeurs valides pour les points de l\'adversaire et le coefficient.';
+        return;
+      }
+      
+      // Calcul : points_totaux = points_adversaire * coefficient
+      const pointsTotaux = pointsAdversaire * coefficient;
+      
+      resultatElement.innerHTML = `Le joueur remporte <strong>${pointsTotaux}</strong> points.`;
+    }
+  </script>
+</body>
+</html>
